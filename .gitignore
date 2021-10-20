@@ -14,7 +14,11 @@ test-results/
 # Mac bundle stuff
 *.dmg
 *.app
+
+# OS generated files #
+######################
 .DS_Store
+.DS_Store?
 
 # content below from: https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
 # General
