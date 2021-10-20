@@ -5,8 +5,6 @@ namespace VirtualPets
     {
 
         // cat and dog will inherit from this class
-        // add name, age, happiness attributes
-        // happiness method?
         private string name;
         private string pet_type;
         private string gender;
@@ -37,8 +35,6 @@ namespace VirtualPets
             get { return datecreated; } // set at instance with the 
         }
 
-        //need age and happiness
-
         public int Age
         {
             get { return age; }
@@ -51,8 +47,8 @@ namespace VirtualPets
             set { happiness = Calc_Happiness(); }
         }
 
-        public static Calc_Age();
-        public static Calc_Happiness();
+        public static Calc_Age(); // to build out
+        public static Calc_Happiness(); // to build out
 
         public void Pet() { } //pet your pet
         public void Play() { } //play with pet
