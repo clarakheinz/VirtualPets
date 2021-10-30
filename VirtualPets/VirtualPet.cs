@@ -8,7 +8,7 @@ namespace VirtualPets
         private string name;
         private string pet_type;
         private string gender;
-        private DateTime datecreated;
+        private static DateTime datecreated;
         private int age;
         private int happiness;
 
@@ -41,18 +41,24 @@ namespace VirtualPets
             set { age = Calc_Age(); } //build this method
         }
 
-        public int Happiness
+        //public int Happiness
+        //{
+        //    get { return happiness; }
+        //    set { happiness = Calc_Happiness(); }
+        //}
+
+        public static int Calc_Age()
         {
-            get { return happiness; }
-            set { happiness = Calc_Happiness(); }
+            DateTime today = DateTime.Now;
+            TimeSpan spanAge =  VirtualPet.datecreated - today;
+            return spanAge.Days;
         }
 
-        public static Calc_Age(); // to build out
-        public static Calc_Happiness(); // to build out
+        //public static int Calc_Happiness(); // to build out
 
-        public void Pet() { } //pet your pet
-        public void Play() { } //play with pet
-        public void Feed() { } //feed pet
+        //public void Pet() { } //pet your pet
+        //public void Play() { } //play with pet
+        //public void Feed() { } //feed pet
 
         //constructor
     }
