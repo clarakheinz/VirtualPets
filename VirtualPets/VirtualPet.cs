@@ -4,13 +4,13 @@ namespace VirtualPets
     public class VirtualPet
     {
 
+
         // cat and dog will inherit from this class
         private string name;
         private string pet_type;
-        private string gender;
         private static DateTime datecreated;
         private int age;
-        private int happiness;
+        private static int happiness;
 
         public string Name
         {
@@ -24,15 +24,10 @@ namespace VirtualPets
             set { pet_type = value; }
         }
 
-        public string Gender
-        {
-            get { return gender; }
-            set { gender = value; }
-        }
-
         public DateTime DateCreated
         {
-            get { return datecreated; } // set at instance with the 
+            get;
+            init; // set at instance with the constructor
         }
 
         public int Age
@@ -41,25 +36,74 @@ namespace VirtualPets
             set { age = Calc_Age(); } //build this method
         }
 
-        //public int Happiness
-        //{
-        //    get { return happiness; }
-        //    set { happiness = Calc_Happiness(); }
-        //}
+        public static int Happiness
+        {
+            get { return happiness; }
+            set { happiness = value; }
+        }
 
         public static int Calc_Age()
         {
             DateTime today = DateTime.Now;
-            TimeSpan spanAge =  VirtualPet.datecreated - today;
+            TimeSpan spanAge = datecreated - today;
             return spanAge.Days;
         }
 
-        //public static int Calc_Happiness(); // to build out
+        public void PrintStats()
+        {
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Date Created: {DateCreated.Date}");
+            Console.WriteLine($"Age: {Age}");
+            Console.WriteLine($"Pet Type: {PetType}");
+            Console.WriteLine($"Happiness: {Happiness}");
+        }
 
-        //public void Pet() { } //pet your pet
-        //public void Play() { } //play with pet
-        //public void Feed() { } //feed pet
+        public static int Calc_Happiness(string action)
+        {
+            switch (action)
+            {
+                case "pet" or "play":
+                    
+                    return (int)(Happiness * 1.3);
+;
+                case "feed" or "walk":
+                    return (int)(Happiness * 1.5);
+                case "nothing":
+                    return (int)(Happiness * .8);
+                default:
+                    return Happiness;
+            }
 
-        //constructor
+        } 
+
+        public void Pet()
+        {
+            //pet your pet
+            Console.WriteLine($"You pet {Name}!");
+            Console.WriteLine($"What a good {PetType}.");
+            Calc_Happiness("pet");
+        }
+        public void Play()
+        {
+            //play with pet
+            Console.WriteLine($"You played with {Name}!");
+            Console.WriteLine($"What a happy {PetType}.");
+            Calc_Happiness("play");
+        }
+        public void Feed()
+        {
+            //feed pet
+            Console.WriteLine($"You fed {Name}!");
+            Console.WriteLine($"What a pleased and full {PetType}.");
+            Calc_Happiness("feed");
+        }
+
+        public void DoNothing()
+        {
+            // do nothing with pet
+            Console.WriteLine($"You decided to do nothing with {Name}.");
+            Calc_Happiness("nothing");
+        }
+
     }
 }

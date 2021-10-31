@@ -3,10 +3,18 @@ using System.Collections.Generic;
 
 namespace VirtualPets
 {
-    public class MainMenu : IMenu
+    public class MainMenu
     {
 
-        public string GameTitle = @"
+        public static void BuildMainMenu()
+        {
+            var options = MainMenu.MenuOptions();
+            MainMenu.DisplayMenu(options);
+            MainMenu.MenuSelection();
+
+        }
+
+        public static string GameTitle = @"
 #     #                                       ######                      
 #     # # #####  ##### #    #   ##   #        #     # ###### #####  ####  
 #     # # #    #   #   #    #  #  #  #        #     # #        #   #      
@@ -17,7 +25,7 @@ namespace VirtualPets
 ";
 
 
-        public List<string> MenuOptions()
+        public static List<string> MenuOptions()
         {
             return new List<string>
             {
@@ -27,7 +35,7 @@ namespace VirtualPets
             };
         }
 
-        public void DisplayMenu(List<string> menuOptions)
+        public static void DisplayMenu(List<string> menuOptions)
         {
             Console.Clear();
             Console.WriteLine(GameTitle + "\n");
@@ -41,7 +49,7 @@ namespace VirtualPets
             }
         }
 
-        public int MenuSelection(List<string> menuOptions)
+        public static void MenuSelection()
         {
             do
             {
@@ -54,7 +62,24 @@ namespace VirtualPets
                     }
                     else
                     {
-                        return numChoice; // need to call sub menues from this
+                        switch (numChoice)
+                        {
+                            case 1:
+                                Console.Clear();
+                                // set up create menu
+                                CreateMenu.BuildCreateMenu();
+
+                                break;
+                            case 2:
+                                Console.Clear();
+                                Console.WriteLine("Loading your pet...");
+                                // call load function
+                                break;
+                            default:
+                                BuildMainMenu();
+                                break;
+                        }
+
                     }
                 }
                 else

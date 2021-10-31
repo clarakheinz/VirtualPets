@@ -3,8 +3,14 @@ namespace VirtualPets
 {
     public class Cat : VirtualPet
     {
-        public Cat()
+        public Cat(string name)
         {
+
+            Name = name;
+            PetType = "cat";
+            DateCreated = DateTime.Today;
+            Happiness = 50;
+            
         }
     }
 }
