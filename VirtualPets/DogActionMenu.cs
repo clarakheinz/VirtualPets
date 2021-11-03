@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace VirtualPets
 {
     public class DogActionMenu
     {
-        public static void BuildDogActionMenu()
+        public static void BuildDogActionMenu(Dog dog)
         {
             var options = DogActionMenu.MenuOptions();
-            DogActionMenu.DisplayMenu(options);
-            DogActionMenu.MenuSelection();
+            DogActionMenu.MenuBuildAndSelection(options, dog);
 
         }
 
@@ -31,17 +31,18 @@ namespace VirtualPets
                 "Play",
                 "Feed",
                 "Walk",
+                "Do nothing",
                 "Save",
                 "Exit"
             };
         }
 
-        public static void DisplayMenu(List<string> MenuOptions)
+        public static void DisplayOptions(List<string> MenuOptions, Dog dog)
         {
             Console.Clear();
             Console.WriteLine(menuTitle);
-            Console.WriteLine("What kind of pet do you want to create?");
-            Console.WriteLine("Enter the number of the option you want to select.");
+            Console.WriteLine("Now you can interact with your dog. Enter the number of the option you want to select.");
+            Console.WriteLine($"What do you want to do with {dog.Name}?");
 
             int optionNum = 1;
             foreach (var option in MenuOptions)
@@ -52,10 +53,12 @@ namespace VirtualPets
 
 
 
-        public static void MenuSelection()
+        public static void MenuBuildAndSelection(List<String> MenuOptions, Dog dog)
         {
+            var continueGame = true;
             do
             {
+                DisplayOptions(MenuOptions, dog);
                 string choice = Console.ReadLine();
                 if (Int32.TryParse(choice, out int numChoice))
                 {
@@ -64,44 +67,74 @@ namespace VirtualPets
                     {
                         case 1:
                             Console.Clear();
+                            Console.WriteLine(menuTitle);
                             // call petObject.Pet();
-                            Console.WriteLine("You pet the dog");
+                            dog.Pet();
+                            dog.PrintStats();
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
                             break;
                         case 2:
                             Console.Clear();
+                            Console.WriteLine(menuTitle);
                             // call petObject.Play
-                            Console.WriteLine("You played with the dog");
+                            dog.Play();
+                            dog.PrintStats();
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
                             break;
                         case 3:
+                            Console.Clear();
+                            Console.WriteLine(menuTitle);
                             // call petObject.Feed()
-                            Console.WriteLine("You fed the dog");
+                            dog.Feed();
+                            dog.PrintStats();
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
                             break;
                         case 4:
+                            Console.Clear();
+                            Console.WriteLine(menuTitle);
                             // call petObject.Walk()
-                            Console.WriteLine("You walked the dog");
+                            dog.Walk();
+                            dog.PrintStats();
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
                             break;
                         case 5:
-                            // call save method
+                            Console.Clear();
+                            Console.WriteLine(menuTitle);
+                            dog.DoNothing();
+                            dog.PrintStats();
+                            Console.WriteLine("Press enter to continue.");
+                            Console.ReadLine();
                             break;
                         case 6:
+                            // call save method
+                            break;
+                        case 7:
                             // exit to main menu
                             Console.Clear();
                             Console.WriteLine("You're exiting to the main menu. I hope you saved!");
-                            MainMenu.BuildMainMenu();
-                            break;
+                            Thread.Sleep(1500);
+                            continueGame = false;
+                            return;
                         default:
                             // not sure what to do here
-                            BuildDogActionMenu();
+                            Console.WriteLine("Sorry, that was not valid. Hit enter to try again.");
+                            Console.ReadLine();
                             break;
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine("Sorry, that is an invalid option. Please Try again.");
+                    Console.WriteLine("Sorry, that is an invalid option.");
+                    Console.WriteLine("Press enter to continue.");
+                    Console.ReadLine();
                 }
             }
-            while (true);
+            while (continueGame);
         }
     }
 }

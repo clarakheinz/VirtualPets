@@ -51,27 +51,29 @@ namespace VirtualPets
 
         public void PrintStats()
         {
+            Console.WriteLine($"Your {PetType}'s statistics:");
             Console.WriteLine($"Name: {Name}");
-            Console.WriteLine($"Date Created: {DateCreated.Date}");
-            Console.WriteLine($"Age: {Age}");
+            Console.WriteLine($"Date Created: {DateCreated.Date.ToShortDateString()}");
+            Console.WriteLine($"Age: {Age} days old");
             Console.WriteLine($"Pet Type: {PetType}");
-            Console.WriteLine($"Happiness: {Happiness}");
+            Console.WriteLine($"Happiness: {Happiness} points");
         }
 
-        public static int Calc_Happiness(string action)
+        public static void Calc_Happiness(string action)
         {
             switch (action)
             {
                 case "pet" or "play":
                     
-                    return (int)(Happiness * 1.3);
+                    Happiness = (int)(Happiness * 1.3);
+                    break;
 ;
                 case "feed" or "walk":
-                    return (int)(Happiness * 1.5);
+                    Happiness =  (int)(Happiness * 1.5);
+                    break;
                 case "nothing":
-                    return (int)(Happiness * .8);
-                default:
-                    return Happiness;
+                    Happiness = (int)(Happiness * .8);
+                    break;
             }
 
         } 

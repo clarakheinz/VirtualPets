@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace VirtualPets
 {
@@ -51,6 +52,7 @@ namespace VirtualPets
 
         public static void MenuSelection()
         {
+            var continueGame= true;
             do
             {
                 string choice = Console.ReadLine();
@@ -58,7 +60,7 @@ namespace VirtualPets
                 {
                     if (numChoice == 3)
                     {
-                        MainMenu.BuildMainMenu();
+                        continueGame = false;
                     }
                     else
                     {
@@ -66,18 +68,31 @@ namespace VirtualPets
                         {
                             case 1:
                                 Console.Clear();
+                                Console.WriteLine(menuTitle);
                                 // grab variables to create new dog
-                                break;
+                                Console.WriteLine("What do you want to name your dog?");
+                                var dogName = Console.ReadLine();
+                                var dog = new Dog(dogName);
+                                Console.WriteLine($"Congrats! You now have a dog named, {dog.Name}. Below are your dog's stats.");
+                                dog.PrintStats();
+                                DogActionMenu.BuildDogActionMenu(dog);
+                                return;
                             case 2:
                                 Console.Clear();
+                                Console.WriteLine(menuTitle);
                                 // grab variables to create new cat
-
+                                Console.WriteLine("What do you want to name your cat?");
+                                var catName = Console.ReadLine();
+                                var cat = new Cat(catName);
+                                Console.WriteLine($"Congrats! You now have a cat named, {cat.Name}. Below are your cat's stats.");
+                                cat.PrintStats();
                                 // initiate cat action loop
-                                CatActionMenu.BuildCatActionMenu();
-                                break;
+                                CatActionMenu.BuildCatActionMenu(cat);
+                                return;
                             default:
                                 // not sure what to do here
-                                BuildCreateMenu();
+                                Console.WriteLine("Sorry, that was not valid. Please hit enter to try again.");
+                                Console.ReadLine();
                                 break;
                         }
 
@@ -85,10 +100,11 @@ namespace VirtualPets
                 }
                 else
                 {
-                    Console.WriteLine("Sorry, that is an invalid option. Please Try again.");
+                    Console.WriteLine("Sorry, that is an invalid option. Please hit enter to try again.");
+                    Console.ReadLine();
                 }
             }
-            while (true);
+            while (continueGame);
         }
     }
 }

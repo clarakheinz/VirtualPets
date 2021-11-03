@@ -8,7 +8,7 @@ namespace VirtualPets
 
             Name = name;
             PetType = "cat";
-            DateCreated = DateTime.Today;
+            DateCreated = DateTime.Today.Date;
             Happiness = 50;
             
         }

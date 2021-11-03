@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace VirtualPets
 {
@@ -9,8 +10,7 @@ namespace VirtualPets
         public static void BuildMainMenu()
         {
             var options = MainMenu.MenuOptions();
-            MainMenu.DisplayMenu(options);
-            MainMenu.MenuSelection();
+            MainMenu.MenuBuildAndSelection(options);
 
         }
 
@@ -35,9 +35,8 @@ namespace VirtualPets
             };
         }
 
-        public static void DisplayMenu(List<string> menuOptions)
+        public static void DisplayOptions(List<string> menuOptions)
         {
-            Console.Clear();
             Console.WriteLine(GameTitle + "\n");
             Console.WriteLine("Please use the menu below to Create a New Pet, Load an exisitng pet, or Exit the game.");
             Console.WriteLine("Enter the number of the option you want to select.");
@@ -49,10 +48,11 @@ namespace VirtualPets
             }
         }
 
-        public static void MenuSelection()
+        public static bool MenuBuildAndSelection(List<string> MenuOptions)
         {
             do
             {
+                DisplayOptions(MenuOptions);
                 string choice = Console.ReadLine();
                 if (Int32.TryParse(choice, out int numChoice)) {
                     if (numChoice == 3) {
@@ -68,7 +68,6 @@ namespace VirtualPets
                                 Console.Clear();
                                 // set up create menu
                                 CreateMenu.BuildCreateMenu();
-
                                 break;
                             case 2:
                                 Console.Clear();
@@ -76,6 +75,9 @@ namespace VirtualPets
                                 // call load function
                                 break;
                             default:
+                                Console.WriteLine("Sorry, that was not valid. Please try again.");
+                                Thread.Sleep(2000);
+                                Console.Clear();
                                 BuildMainMenu();
                                 break;
                         }
@@ -84,7 +86,9 @@ namespace VirtualPets
                 }
                 else
                 {
-                    Console.WriteLine("Sorry, that is an invalid option. Please Try again.");
+                    Console.Clear();
+                    Console.WriteLine("Sorry, that is an invalid option. Please hit enter to try again.");
+                    Console.ReadLine();
                 }
             }
             while (true);
