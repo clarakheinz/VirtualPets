@@ -11,6 +11,8 @@ namespace VirtualPets
             Happiness = 50;
         }
 
+        // TODO: Overload constructor method to allow for loading saved data
+
         public void Walk()
         {
             //walk your dog

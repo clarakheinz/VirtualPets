@@ -6,5 +6,7 @@ namespace VirtualPets.Utilities
         public LoggingUtil()
         {
         }
+
+        // TODO: Create method to log actions from action menus to keep track
     }
 }

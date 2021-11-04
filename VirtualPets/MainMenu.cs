@@ -58,6 +58,7 @@ namespace VirtualPets
                     if (numChoice == 3) {
                         Console.Clear();
                         Console.WriteLine("Thanks for playing! See you next time.");
+                        Thread.Sleep(1000);
                         Environment.Exit(0);
                     }
                     else
@@ -76,7 +77,7 @@ namespace VirtualPets
                                 break;
                             default:
                                 Console.WriteLine("Sorry, that was not valid. Please try again.");
-                                Thread.Sleep(2000);
+                                Thread.Sleep(1500);
                                 Console.Clear();
                                 BuildMainMenu();
                                 break;

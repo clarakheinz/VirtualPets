@@ -73,8 +73,9 @@ namespace VirtualPets
                                 Console.WriteLine("What do you want to name your dog?");
                                 var dogName = Console.ReadLine();
                                 var dog = new Dog(dogName);
-                                Console.WriteLine($"Congrats! You now have a dog named, {dog.Name}. Below are your dog's stats.");
+                                Console.WriteLine($"Congrats! You now have a dog named, {dog.Name}. Below are your dog's stats. Hit enter to continue to the next screen.");
                                 dog.PrintStats();
+                                Console.ReadLine();
                                 DogActionMenu.BuildDogActionMenu(dog);
                                 return;
                             case 2:
@@ -84,8 +85,9 @@ namespace VirtualPets
                                 Console.WriteLine("What do you want to name your cat?");
                                 var catName = Console.ReadLine();
                                 var cat = new Cat(catName);
-                                Console.WriteLine($"Congrats! You now have a cat named, {cat.Name}. Below are your cat's stats.");
+                                Console.WriteLine($"Congrats! You now have a cat named, {cat.Name}. Below are your cat's stats. Hit enter to continue to the next screen.");
                                 cat.PrintStats();
+                                Console.ReadLine();
                                 // initiate cat action loop
                                 CatActionMenu.BuildCatActionMenu(cat);
                                 return;

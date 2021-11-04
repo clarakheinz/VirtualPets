@@ -66,13 +66,41 @@ namespace VirtualPets
                 case "pet" or "play":
                     
                     Happiness = (int)(Happiness * 1.3);
+                    if (Happiness < 0)
+                    {
+                        Happiness = 0;
+                    };
+                    else if (Happiness ==0)
+                    {
+                        Happiness = 1;
+                    }
                     break;
 ;
                 case "feed" or "walk":
                     Happiness =  (int)(Happiness * 1.5);
+                    if (Happiness < 0)
+                    {
+                        Happiness = 0;
+                    }
+                    else if (Happiness > 100)
+                    {
+                        Happiness = 100;
+                    }
+                    else if (Happiness == 0)
+                    {
+                        Happiness = 1;
+                    }
                     break;
                 case "nothing":
                     Happiness = (int)(Happiness * .8);
+                    if (Happiness < 0)
+                    {
+                        Happiness = 0;
+                    }
+                    else if (Happiness > 100)
+                    {
+                        Happiness = 100;
+                    }
                     break;
             }
 

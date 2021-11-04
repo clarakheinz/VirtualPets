@@ -12,5 +12,7 @@ namespace VirtualPets
             Happiness = 50;
             
         }
+
+        // TODO: overload constructor method to allow for loading saved data into an instance of obj
     }
 }
