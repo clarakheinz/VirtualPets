@@ -48,6 +48,7 @@ namespace VirtualPets
             {
                 Console.WriteLine($"{optionNum++}. {option}");
             }
+            Console.WriteLine();
         }
 
         public static void MenuSelection()
@@ -82,10 +83,10 @@ namespace VirtualPets
                                 Console.Clear();
                                 Console.WriteLine(menuTitle);
                                 // grab variables to create new cat
-                                Console.WriteLine("What do you want to name your cat?");
+                                Console.WriteLine("What do you want to name your cat?\n");
                                 var catName = Console.ReadLine();
                                 var cat = new Cat(catName);
-                                Console.WriteLine($"Congrats! You now have a cat named, {cat.Name}. Below are your cat's stats. Hit enter to continue to the next screen.");
+                                Console.WriteLine($"Congrats! You now have a cat named {cat.Name}. Below are your cat's stats. Hit enter to continue to the next screen.\n");
                                 cat.PrintStats();
                                 Console.ReadLine();
                                 // initiate cat action loop

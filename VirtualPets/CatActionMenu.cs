@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using VirtualPets.Utilities;
 
 namespace VirtualPets
 {
@@ -47,6 +48,7 @@ namespace VirtualPets
             {
                 Console.WriteLine($"{optionNum++}. {option}");
             }
+            Console.WriteLine();
         }
 
         public static void MenuBuildAndSelection(List<string> MenuOptions, Cat cat)
@@ -98,7 +100,9 @@ namespace VirtualPets
                             Console.ReadLine();
                             break;
                         case 5:
-                            // call save method
+                            SaveUtil.SaveGame(cat);
+                            Console.WriteLine("Your game has saved! Hit enter to continue.");
+                            Console.ReadLine();
                             break;
                         case 6:
                             //mainmenu

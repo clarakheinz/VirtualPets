@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using VirtualPets.Utilities;
 
 namespace VirtualPets
 {
@@ -39,13 +40,14 @@ namespace VirtualPets
         {
             Console.WriteLine(GameTitle + "\n");
             Console.WriteLine("Please use the menu below to Create a New Pet, Load an exisitng pet, or Exit the game.");
-            Console.WriteLine("Enter the number of the option you want to select.");
+            Console.WriteLine("Enter the number of the option you want to select.\n");
 
             int optionNum = 1;
             foreach (var option in menuOptions)
             {
                 Console.WriteLine($"{optionNum++}. {option}");
             }
+            Console.WriteLine();
         }
 
         public static bool MenuBuildAndSelection(List<string> MenuOptions)
@@ -73,7 +75,19 @@ namespace VirtualPets
                             case 2:
                                 Console.Clear();
                                 Console.WriteLine("Loading your pet...");
-                                // call load function
+                                var pet = LoadUtil.LoadGame();
+                                if (pet.GetType() == typeof(Dog))
+                                {
+                                    DogActionMenu.BuildDogActionMenu((Dog)pet);
+                                }
+                                else if (pet.GetType() == typeof(Cat))
+                                {
+                                    CatActionMenu.BuildCatActionMenu((Cat)pet);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("There was an issue reaidng in your pet data. Please hit enter and then select Create New Pet.\n");
+                                }
                                 break;
                             default:
                                 Console.WriteLine("Sorry, that was not valid. Please try again.");

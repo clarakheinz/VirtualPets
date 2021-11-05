@@ -3,11 +3,12 @@ namespace VirtualPets
 {
     public class Dog : VirtualPet
     {
+        public Dog() { }
         public Dog(string name)
         {
             Name = name;
-            PetType = "dog";
-            DateCreated = DateTime.Today.Date;
+            DateCreated = DateTime.Today;
+            PetType = this.GetType().ToString();
             Happiness = 50;
         }
 
@@ -17,7 +18,7 @@ namespace VirtualPets
         {
             //walk your dog
             Console.WriteLine($"You walked {Name}!");
-            Console.WriteLine($"What a happy and tired {PetType}.");
+            Console.WriteLine($"What a happy and tired {PetType.Substring(PetType.Length -3).ToLower()}.");
             Calc_Happiness("walk");
         }
     }
